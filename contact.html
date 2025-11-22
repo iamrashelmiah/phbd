@@ -19,10 +19,49 @@
             -webkit-text-size-adjust: 100%;
         }
 
+        /* CSS Variables for Theming - UPDATED COLORS */
+        :root {
+            /* Light Theme Colors - Forest Green */
+            --primary-gradient: linear-gradient(135deg, #059669, #047857);
+            --secondary-gradient: linear-gradient(135deg, #10b981, #059669);
+            --background-gradient: linear-gradient(45deg, #065f46, #047857, #059669, #047857);
+            --glass-bg: rgba(255, 255, 255, 0.12);
+            --glass-border: rgba(255, 255, 255, 0.18);
+            --glass-shadow: 0 25px 50px rgba(5, 150, 105, 0.2);
+            --text-primary: rgba(255, 255, 255, 0.95);
+            --text-secondary: rgba(255, 255, 255, 0.8);
+            --text-muted: rgba(255, 255, 255, 0.6);
+            --nav-bg: rgba(255, 255, 255, 0.15);
+            --input-bg: rgba(255, 255, 255, 0.1);
+            --input-focus: rgba(255, 255, 255, 0.15);
+            --success-bg: rgba(34, 197, 94, 0.25);
+            --error-bg: rgba(239, 68, 68, 0.25);
+            --info-bg: rgba(59, 130, 246, 0.25);
+        }
+
+        /* Dark Theme Colors - UPDATED */
+        [data-theme="dark"] {
+            --primary-gradient: linear-gradient(135deg, #10b981, #059669);
+            --secondary-gradient: linear-gradient(135deg, #047857, #065f46);
+            --background-gradient: linear-gradient(45deg, #064e3b, #065f46, #047857, #065f46);
+            --glass-bg: rgba(6, 95, 70, 0.35);
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --glass-shadow: 0 25px 50px rgba(5, 150, 105, 0.3);
+            --text-primary: rgba(255, 255, 255, 0.95);
+            --text-secondary: rgba(255, 255, 255, 0.75);
+            --text-muted: rgba(255, 255, 255, 0.5);
+            --nav-bg: rgba(6, 95, 70, 0.4);
+            --input-bg: rgba(255, 255, 255, 0.08);
+            --input-focus: rgba(255, 255, 255, 0.12);
+            --success-bg: rgba(34, 197, 94, 0.3);
+            --error-bg: rgba(239, 68, 68, 0.3);
+            --info-bg: rgba(59, 130, 246, 0.3);
+        }
+
         html {
-            background: linear-gradient(45deg, #7b5fe2, #5d8de6, #9d6bdb, #6a4c9c);
+            background: var(--background-gradient);
             background-size: 400% 400%;
-            background-color: #6a4c9c;
+            background-color: #047857;
             min-height: 100%;
         }
 
@@ -32,13 +71,14 @@
             min-height: 100svh;
             min-height: 100dvh;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(45deg, #7b5fe2, #5d8de6, #9d6bdb, #6a4c9c);
+            background: var(--background-gradient);
             background-size: 400% 400%;
             animation: gradientAnimation 25s ease infinite;
             overflow-x: hidden;
             transition: background 1s ease;
             padding-bottom: env(safe-area-inset-bottom);
             position: relative;
+            color: var(--text-primary);
         }
 
         body::before {
@@ -72,7 +112,7 @@
             height: 44px;
             border-radius: 50%;
             border: none;
-            background: linear-gradient(135deg, #8a6de9, #6a4c9c);
+            background: var(--primary-gradient);
             color: white;
             box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
             display: flex;
@@ -97,7 +137,7 @@
 
         /* Animated Gradient Text */
         .animated-gradient-text {
-            background: linear-gradient(120deg, #ffffff, #ffd700, #a8c5ff, #ffffff);
+            background: linear-gradient(120deg, #ffffff, #a7f3d0, #ffffff);
             background-size: 240% 240%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -112,11 +152,11 @@
         }
 
 
-        /* Navigation Bar */
+        /* Navigation Bar - UPDATED COLORS */
         .navbar {
-            background: rgba(255, 255, 255, 0.12);
+            background: var(--nav-bg);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            border-bottom: 1px solid var(--glass-border);
             padding: 10px 30px;
             position: fixed;
             top: 0;
@@ -146,19 +186,19 @@
         .logo-circle {
             width: 40px;
             height: 40px;
-            background: linear-gradient(135deg, #8a6de9, #6a4c9c);
+            background: var(--primary-gradient);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 12px rgba(138, 109, 233, 0.3);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
             border: 2px solid rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
         }
 
         .logo-circle:hover {
             transform: scale(1.05);
-            box-shadow: 0 6px 18px rgba(138, 109, 233, 0.4);
+            box-shadow: 0 6px 18px rgba(16, 185, 129, 0.4);
         }
 
         .logo-circle i {
@@ -169,7 +209,7 @@
         .nav-brand {
             font-size: 1.6rem;
             font-weight: 800;
-            background: linear-gradient(45deg, #ffffff, #e6e6ff);
+            background: linear-gradient(45deg, #ffffff, #a7f3d0);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -189,7 +229,7 @@
         }
 
         .nav-links a {
-            color: rgba(255, 255, 255, 0.85);
+            color: var(--text-secondary);
             text-decoration: none;
             font-weight: 600;
             font-size: 14px;
@@ -227,7 +267,7 @@
 
         .nav-links a.active {
             background: rgba(255, 255, 255, 0.2);
-            color: #ffd700;
+            color: #6ee7b7;
         }
 
         /* Toggle Controls */
@@ -287,7 +327,7 @@
             justify-content: center;
             font-size: 11px;
             font-weight: 600;
-            color: rgba(255, 255, 255, 0.8);
+            color: var(--text-secondary);
             transition: all 0.3s ease;
             z-index: 2;
             border-radius: 18px;
@@ -295,7 +335,7 @@
 
         .toggle-thumb.active {
             color: white;
-            background: linear-gradient(135deg, #8a6de9, #6a4c9c);
+            background: var(--primary-gradient);
         }
 
         .toggle-icon {
@@ -319,7 +359,7 @@
         .page-title {
             font-size: 3rem;
             font-weight: 800;
-            background: linear-gradient(45deg, #ffffff, #e6e6ff);
+            background: linear-gradient(45deg, #ffffff, #a7f3d0);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -329,7 +369,7 @@
 
         .page-subtitle {
             font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.85);
+            color: var(--text-secondary);
             max-width: 600px;
             margin: 0 auto;
         }
@@ -342,15 +382,15 @@
             margin-bottom: 50px;
         }
 
-        /* Contact Info */
+        /* Contact Info - UPDATED COLORS */
         .contact-info {
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--glass-bg);
             backdrop-filter: blur(20px);
             border-radius: 18px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid var(--glass-border);
             padding: 30px;
             transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            box-shadow: var(--glass-shadow);
             position: relative;
             overflow: hidden;
         }
@@ -362,7 +402,7 @@
             left: -2px;
             right: -2px;
             bottom: -2px;
-            background: linear-gradient(45deg, #8a6de9, #6a4c9c, #5d8de6, #8a6de9);
+            background: linear-gradient(45deg, #10b981, #059669, #047857, #10b981);
             background-size: 400% 400%;
             animation: gradientAnimation 8s ease infinite;
             z-index: -1;
@@ -372,13 +412,13 @@
 
         .contact-info:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(138, 109, 233, 0.2);
+            box-shadow: 0 15px 35px rgba(16, 185, 129, 0.2);
         }
 
         .info-title {
             font-size: 1.5rem;
             font-weight: 700;
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--text-primary);
             margin-bottom: 25px;
             text-align: center;
         }
@@ -403,7 +443,7 @@
         .info-icon {
             width: 45px;
             height: 45px;
-            background: linear-gradient(135deg, #8a6de9, #6a4c9c);
+            background: var(--primary-gradient);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -418,25 +458,25 @@
         }
 
         .info-content h4 {
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--text-primary);
             font-size: 1rem;
             margin-bottom: 5px;
         }
 
         .info-content p {
-            color: rgba(255, 255, 255, 0.75);
+            color: var(--text-secondary);
             font-size: 0.9rem;
         }
 
-        /* Contact Form */
+        /* Contact Form - UPDATED COLORS */
         .contact-form {
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--glass-bg);
             backdrop-filter: blur(20px);
             border-radius: 18px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid var(--glass-border);
             padding: 30px;
             transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            box-shadow: var(--glass-shadow);
             position: relative;
             overflow: hidden;
         }
@@ -448,7 +488,7 @@
             left: -2px;
             right: -2px;
             bottom: -2px;
-            background: linear-gradient(45deg, #8a6de9, #6a4c9c, #5d8de6, #8a6de9);
+            background: linear-gradient(45deg, #10b981, #059669, #047857, #10b981);
             background-size: 400% 400%;
             animation: gradientAnimation 8s ease infinite;
             z-index: -1;
@@ -458,13 +498,13 @@
 
         .contact-form:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(138, 109, 233, 0.2);
+            box-shadow: 0 15px 35px rgba(16, 185, 129, 0.2);
         }
 
         .form-title {
             font-size: 1.5rem;
             font-weight: 700;
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--text-primary);
             margin-bottom: 25px;
             text-align: center;
         }
@@ -477,7 +517,7 @@
         .form-group label {
             display: block;
             margin-bottom: 8px;
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--text-primary);
             font-weight: 600;
             font-size: 14px;
         }
@@ -487,7 +527,7 @@
             padding: 14px 18px;
             border: none;
             border-radius: 12px;
-            background: rgba(255, 255, 255, 0.08);
+            background: var(--input-bg);
             font-size: 15px;
             transition: all 0.3s ease;
             border: 1.5px solid transparent;
@@ -497,17 +537,17 @@
 
         .form-control:focus {
             outline: none;
-            background: rgba(255, 255, 255, 0.12);
-            border-color: #8a6de9;
-            box-shadow: 0 0 0 3px rgba(138, 109, 233, 0.15);
+            background: var(--input-focus);
+            border-color: #10b981;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
         }
 
         .form-control::placeholder {
-            color: rgba(255, 255, 255, 0.5);
+            color: var(--text-muted);
         }
 
         .form-control:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--input-focus);
         }
 
         textarea.form-control {
@@ -516,7 +556,7 @@
             font-family: inherit;
         }
 
-        /* Buttons */
+        /* Buttons - UPDATED COLORS */
         .btn {
             padding: 14px 28px;
             border: none;
@@ -551,14 +591,14 @@
         }
 
         .btn-primary {
-            background: linear-gradient(45deg, #8a6de9, #6a4c9c);
+            background: var(--primary-gradient);
             color: white;
-            box-shadow: 0 4px 12px rgba(138, 109, 233, 0.3);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(138, 109, 233, 0.4);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
         }
 
         .btn-primary:disabled {
@@ -569,7 +609,7 @@
 
         .btn-primary:disabled:hover {
             transform: none;
-            box-shadow: 0 4px 12px rgba(138, 109, 233, 0.3);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
         }
 
         .btn-loading {
@@ -596,7 +636,7 @@
             100% { transform: translate(-50%, -50%) rotate(360deg); }
         }
 
-        /* Message Box */
+        /* Message Box - UPDATED COLORS */
         .message {
             padding: 10px;
             border-radius: 8px;
@@ -620,38 +660,35 @@
         }
 
         .message.success {
-            background: rgba(46, 125, 50, 0.15);
-            color: #a5d6a7;
-            border: 1px solid rgba(76, 175, 80, 0.25);
+            background: var(--success-bg);
+            color: #86efac;
+            border: 1px solid rgba(34, 197, 94, 0.25);
         }
 
         .message.error {
-            background: rgba(198, 40, 40, 0.15);
-            color: #ef9a9a;
-            border: 1px solid rgba(244, 67, 54, 0.25);
+            background: var(--error-bg);
+            color: #fca5a5;
+            border: 1px solid rgba(239, 68, 68, 0.25);
         }
 
         .message.info {
-            background: rgba(33, 150, 243, 0.15);
-            color: #90caf9;
-            border: 1px solid rgba(33, 150, 243, 0.25);
+            background: var(--info-bg);
+            color: #93c5fd;
+            border: 1px solid rgba(59, 130, 246, 0.25);
         }
 
         /* Gradient text fix */
         .page-title,
-        .pricing-title,
-        .pricing-price {
+        .nav-brand,
+        .animated-gradient-text {
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         /* Backdrop filter fix */
         .navbar,
-        .glass-card,
         .contact-form,
-        .contact-info,
-        .summary-section,
-        .faq-section {
+        .contact-info {
             -webkit-backdrop-filter: blur(20px);
         }
 
@@ -661,7 +698,7 @@
             -webkit-perspective: 1000;
         }
 
-        /* Social Icons - ROUND SHAPE (From Login Page) */
+        /* Social Icons - ROUND SHAPE (From Login Page) - UPDATED COLORS */
         .social-icons {
             display: flex;
             justify-content: center;
@@ -672,7 +709,7 @@
         .social-icon {
             width: 40px;
             height: 40px;
-            border-radius: 50%; /* Changed from 10px to 50% for round shape */
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -712,9 +749,9 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
-        /* Error Message Styles */
+        /* Error Message Styles - UPDATED COLORS */
         .error-message {
-            color: #ef9a9a;
+            color: #fca5a5;
             font-size: 11px;
             margin-top: 4px;
             display: none;
@@ -819,23 +856,17 @@
             }
         }
 
-        /* Dark Mode Styles */
-        body.dark-mode {
-            background: linear-gradient(45deg, #5a4a9c, #4a3a7c, #3a2a5c, #4a3a7c);
-            background-size: 400% 400%;
-            animation: gradientAnimation 25s ease infinite;
+        /* Dark Mode Styles - UPDATED */
+        [data-theme="dark"] .navbar {
+            background: var(--nav-bg);
+            border-bottom-color: var(--glass-border);
         }
 
-        body.dark-mode .navbar {
-            background: rgba(0, 0, 0, 0.2);
-            border-bottom-color: rgba(255, 255, 255, 0.1);
+        [data-theme="dark"] .nav-links a {
+            color: var(--text-secondary);
         }
 
-        body.dark-mode .nav-links a {
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        body.dark-mode .nav-links a:hover {
+        [data-theme="dark"] .nav-links a:hover {
             background: rgba(255, 255, 255, 0.1);
         }
     </style>
@@ -1264,7 +1295,7 @@
             if (isRightClick) {
                 // Dark Mode
                 isDarkMode = true;
-                document.body.classList.add('dark-mode');
+                document.documentElement.setAttribute('data-theme', 'dark');
                 updateDarkModeToggle(true);
                 const message = isEnglish ? translations.en.darkMode : translations.bn.darkMode;
                 showMessage(message, 'success');
@@ -1272,7 +1303,7 @@
             } else {
                 // Light Mode
                 isDarkMode = false;
-                document.body.classList.remove('dark-mode');
+                document.documentElement.removeAttribute('data-theme');
                 updateDarkModeToggle(false);
                 const message = isEnglish ? translations.en.lightMode : translations.bn.lightMode;
                 showMessage(message, 'success');
@@ -1319,7 +1350,7 @@
             const savedDarkMode = localStorage.getItem('darkMode');
             if (savedDarkMode === 'true') {
                 isDarkMode = true;
-                document.body.classList.add('dark-mode');
+                document.documentElement.setAttribute('data-theme', 'dark');
             }
             updateDarkModeToggle(isDarkMode);
             
@@ -1368,7 +1399,11 @@
             if (e.ctrlKey && e.key === 'd') {
                 e.preventDefault();
                 isDarkMode = !isDarkMode;
-                document.body.classList.toggle('dark-mode', isDarkMode);
+                if (isDarkMode) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                } else {
+                    document.documentElement.removeAttribute('data-theme');
+                }
                 updateDarkModeToggle(isDarkMode);
                 const message = isDarkMode ? 
                     (isEnglish ? translations.en.darkMode : translations.bn.darkMode) :
