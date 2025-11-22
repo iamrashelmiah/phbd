@@ -1,0 +1,1575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PocketHisab - Sign Up</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* CSS Variables for Theming */
+        :root {
+            /* Light Theme Colors - Forest Green */
+            --primary-gradient: linear-gradient(135deg, #059669, #047857);
+            --secondary-gradient: linear-gradient(135deg, #10b981, #059669);
+            --background-gradient: linear-gradient(45deg, #065f46, #047857, #059669, #047857);
+            --glass-bg: rgba(255, 255, 255, 0.12);
+            --glass-border: rgba(255, 255, 255, 0.18);
+            --glass-shadow: 0 25px 50px rgba(5, 150, 105, 0.2);
+            --text-primary: rgba(255, 255, 255, 0.95);
+            --text-secondary: rgba(255, 255, 255, 0.8);
+            --text-muted: rgba(255, 255, 255, 0.6);
+            --nav-bg: rgba(255, 255, 255, 0.15);
+            --input-bg: rgba(255, 255, 255, 0.1);
+            --input-focus: rgba(255, 255, 255, 0.15);
+            --success-bg: rgba(34, 197, 94, 0.25);
+            --error-bg: rgba(239, 68, 68, 0.25);
+            --info-bg: rgba(59, 130, 246, 0.25);
+        }
+
+        /* Dark Theme Colors */
+        [data-theme="dark"] {
+            --primary-gradient: linear-gradient(135deg, #10b981, #059669);
+            --secondary-gradient: linear-gradient(135deg, #047857, #065f46);
+            --background-gradient: linear-gradient(45deg, #064e3b, #065f46, #047857, #065f46);
+            --glass-bg: rgba(6, 95, 70, 0.35);
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --glass-shadow: 0 25px 50px rgba(5, 150, 105, 0.3);
+            --text-primary: rgba(255, 255, 255, 0.95);
+            --text-secondary: rgba(255, 255, 255, 0.75);
+            --text-muted: rgba(255, 255, 255, 0.5);
+            --nav-bg: rgba(6, 95, 70, 0.4);
+            --input-bg: rgba(255, 255, 255, 0.08);
+            --input-focus: rgba(255, 255, 255, 0.12);
+            --success-bg: rgba(34, 197, 94, 0.3);
+            --error-bg: rgba(239, 68, 68, 0.3);
+            --info-bg: rgba(59, 130, 246, 0.3);
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+            background: var(--background-gradient);
+            background-size: 400% 400%;
+            min-height: 100%;
+        }
+
+        /* Body Styles */
+        body {
+            min-height: 100vh;
+            min-height: 100svh;
+            min-height: 100dvh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--background-gradient);
+            background-size: 400% 400%;
+            animation: gradientAnimation 25s ease infinite;
+            padding: 20px;
+            transition: all 0.5s ease;
+            position: relative;
+            padding-bottom: env(safe-area-inset-bottom);
+            color: var(--text-primary);
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: inherit;
+            background-attachment: fixed;
+            z-index: -2;
+            pointer-events: none;
+            animation: inherit;
+        }
+
+        /* Background Animation */
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 50% 50%; }
+            50% { background-position: 100% 50%; }
+            75% { background-position: 50% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Forest Elements */
+        .forest-element {
+            position: fixed;
+            border-radius: 50%;
+            background: rgba(16, 185, 129, 0.15);
+            backdrop-filter: blur(15px);
+            animation: float 8s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        .forest-1 {
+            width: 120px;
+            height: 120px;
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.2), transparent);
+        }
+
+        .forest-2 {
+            width: 80px;
+            height: 80px;
+            top: 70%;
+            right: 8%;
+            animation-delay: 2s;
+            background: radial-gradient(circle, rgba(5, 150, 105, 0.15), transparent);
+        }
+
+        .forest-3 {
+            width: 60px;
+            height: 60px;
+            bottom: 20%;
+            left: 15%;
+            animation-delay: 4s;
+            background: radial-gradient(circle, rgba(4, 120, 87, 0.12), transparent);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-25px) rotate(180deg); }
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background: var(--nav-bg);
+            backdrop-filter: blur(30px) saturate(200%);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 15px 30px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-radius: 0 0 20px 20px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-circle {
+            width: 44px;
+            height: 44px;
+            background: var(--primary-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .logo-circle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 18px rgba(16, 185, 129, 0.4);
+        }
+
+        .logo-circle i {
+            color: white;
+            font-size: 20px;
+        }
+
+        .nav-brand {
+            font-size: 1.7rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #ffffff, #a7f3d0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-center {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .nav-links a:hover::before {
+            left: 100%;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Toggle Controls */
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Capsule Toggle Styles */
+        .capsule-toggle {
+            width: 70px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 2px;
+            cursor: pointer;
+            position: relative;
+            border: 1.5px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            display: flex;
+            overflow: hidden;
+        }
+
+        .capsule-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .toggle-track {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .toggle-thumb {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            z-index: 2;
+            border-radius: 18px;
+        }
+
+        .toggle-thumb.active {
+            color: white;
+            background: var(--primary-gradient);
+        }
+
+        .toggle-icon {
+            font-size: 12px;
+        }
+
+        /* Ultra Glassy Card */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(40px) saturate(200%);
+            -webkit-backdrop-filter: blur(40px) saturate(200%);
+            border-radius: 28px;
+            border: 1px solid var(--glass-border);
+            padding: 50px 45px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 
+                var(--glass-shadow),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            margin: 8px auto;
+            max-width: 520px;
+            width: calc(100% - 48px);
+            box-sizing: border-box;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(16, 185, 129, 0.15) 0%,
+                rgba(5, 150, 105, 0.08) 50%,
+                rgba(4, 120, 87, 0.15) 100%
+            );
+            z-index: -1;
+            border-radius: 28px;
+            opacity: 0.8;
+        }
+
+        .glass-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(255, 255, 255, 0.05),
+                transparent
+            );
+            transform: rotate(45deg);
+            animation: shine 6s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes shine {
+            0%, 100% { transform: rotate(45deg) translateX(-100%); }
+            50% { transform: rotate(45deg) translateX(100%); }
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 
+                0 35px 70px rgba(5, 150, 105, 0.35),
+                inset 0 1px 0 rgba(255, 255, 255, 0.25),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+            border-color: rgba(16, 185, 129, 0.4);
+        }
+
+        /* Logo */
+        .logo {
+            text-align: center;
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 35px;
+            background: linear-gradient(135deg, #ffffff, #a7f3d0, #6ee7b7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 4px 20px rgba(16, 185, 129, 0.3);
+            position: relative;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #10b981, transparent);
+            border-radius: 2px;
+        }
+
+        /* Back to Login */
+        .back-link {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .back-link a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 10px 20px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+        }
+
+        .back-link a:hover {
+            color: #6ee7b7;
+            background: rgba(16, 185, 129, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+        }
+
+        /* Progress Steps */
+        .progress-steps {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            gap: 30px;
+            position: relative;
+        }
+
+        .progress-steps::before {
+            content: '';
+            position: absolute;
+            top: 22px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(16, 185, 129, 0.4) 20%, 
+                rgba(16, 185, 129, 0.7) 50%, 
+                rgba(16, 185, 129, 0.4) 80%, 
+                transparent 100%);
+            z-index: 1;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            color: var(--text-muted);
+            font-size: 18px;
+            border: 2px solid transparent;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .step.active .step-circle {
+            background: var(--primary-gradient);
+            color: white;
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+            transform: scale(1.1);
+        }
+
+        .step.completed .step-circle {
+            background: var(--secondary-gradient);
+            color: white;
+            box-shadow: 0 6px 20px rgba(5, 150, 105, 0.5);
+        }
+
+        .step-text {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 6px 14px;
+            border-radius: 10px;
+            backdrop-filter: blur(15px);
+        }
+
+        .step.active .step-text {
+            color: var(--text-primary);
+            font-weight: 600;
+            background: rgba(16, 185, 129, 0.15);
+        }
+
+        /* Form Grid */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        /* Form Groups */
+        .form-group {
+            margin-bottom: 28px;
+            position: relative;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 15px;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 8px 14px;
+            border-radius: 10px;
+            backdrop-filter: blur(15px);
+            display: inline-block;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 20px 22px;
+            border: none;
+            border-radius: 18px;
+            background: var(--input-bg);
+            font-size: 16px;
+            transition: all 0.3s ease;
+            border: 1.5px solid transparent;
+            color: var(--text-primary);
+            font-family: inherit;
+            backdrop-filter: blur(15px);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-control:focus {
+            outline: none;
+            background: var(--input-focus);
+            border-color: #10b981;
+            box-shadow: 
+                0 0 0 3px rgba(16, 185, 129, 0.2),
+                inset 0 2px 4px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .form-control::placeholder {
+            color: var(--text-muted);
+        }
+
+        .form-control:hover {
+            background: var(--input-focus);
+            border-color: rgba(16, 185, 129, 0.4);
+        }
+
+        /* Buttons */
+        .btn {
+            width: 100%;
+            padding: 20px;
+            border: none;
+            border-radius: 18px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-top: 15px;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(15px);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: var(--primary-gradient);
+            color: white;
+            box-shadow: 
+                0 4px 15px rgba(16, 185, 129, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 8px 25px rgba(16, 185, 129, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--text-primary);
+            box-shadow: 
+                0 4px 15px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn-group .btn {
+            flex: 1;
+        }
+
+        /* Message Box */
+        .message {
+            padding: 18px;
+            border-radius: 14px;
+            margin-top: 25px;
+            text-align: center;
+            display: none;
+            font-weight: 500;
+            backdrop-filter: blur(20px);
+            animation: slideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .message::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, currentColor, transparent);
+        }
+
+        .message.success {
+            background: var(--success-bg);
+            color: #86efac;
+            border-color: rgba(34, 197, 94, 0.3);
+        }
+
+        .message.error {
+            background: var(--error-bg);
+            color: #fca5a5;
+            border-color: rgba(239, 68, 68, 0.3);
+        }
+
+        .message.info {
+            background: var(--info-bg);
+            color: #93c5fd;
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Error Message Styles */
+        .error-message {
+            color: #fca5a5;
+            font-size: 13px;
+            margin-top: 8px;
+            display: none;
+            background: rgba(239, 68, 68, 0.1);
+            padding: 6px 12px;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 12px 20px;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            
+            .nav-left {
+                order: 1;
+                flex: 1;
+            }
+            
+            .nav-controls {
+                order: 2;
+                gap: 6px;
+            }
+            
+            .nav-center {
+                order: 3;
+                flex: 1 1 100%;
+                justify-content: center;
+                margin-top: 8px;
+            }
+            
+            .nav-links {
+                gap: 12px;
+            }
+            
+            .nav-links a {
+                font-size: 13px;
+                padding: 6px 12px;
+            }
+            
+            .capsule-toggle {
+                width: 65px;
+                height: 28px;
+            }
+            
+            .nav-brand {
+                font-size: 1.4rem;
+            }
+            
+            .logo-circle {
+                width: 36px;
+                height: 36px;
+            }
+            
+            .logo-circle i {
+                font-size: 16px;
+            }
+            
+            .glass-card {
+                padding: 40px 30px;
+                margin: 20px auto;
+            }
+            
+            .logo {
+                font-size: 2.4rem;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .progress-steps {
+                gap: 20px;
+            }
+            
+            .step-circle {
+                width: 45px;
+                height: 45px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 10px 15px;
+            }
+            
+            .nav-links {
+                gap: 8px;
+            }
+            
+            .nav-links a {
+                font-size: 12px;
+                padding: 5px 10px;
+            }
+            
+            .capsule-toggle {
+                width: 60px;
+                height: 26px;
+            }
+            
+            .toggle-icon {
+                font-size: 10px;
+            }
+            
+            .nav-brand {
+                font-size: 1.2rem;
+            }
+            
+            .logo {
+                font-size: 2.2rem;
+            }
+            
+            body {
+                padding: 15px;
+            }
+            
+            .glass-card {
+                padding: 35px 25px;
+                width: calc(100% - 24px);
+            }
+            
+            .forest-element {
+                display: none;
+            }
+        }
+
+        /* ensure same default navbar and form sits below it */
+        body { 
+            padding-top: 85px; 
+        }
+
+        .glass-card {
+            margin: 8px auto;
+            max-width: 520px;
+            width: calc(100% - 48px);
+            box-sizing: border-box;
+        }
+
+        @media (max-width: 480px) {
+            body { 
+                padding-top: 80px; 
+            }
+            
+            .glass-card {
+                width: calc(100% - 24px);
+                padding: 30px 20px;
+                margin: 20px auto;
+            }
+        }
+
+        /* Safari Compatibility */
+        .navbar,
+        .glass-card {
+            -webkit-backdrop-filter: blur(40px) saturate(200%);
+        }
+    </style>
+</head>
+<body>
+    <!-- Forest Background Elements -->
+    <div class="forest-element forest-1"></div>
+    <div class="forest-element forest-2"></div>
+    <div class="forest-element forest-3"></div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <!-- Left Side: Logo + Brand Name -->
+        <div class="nav-left">
+            <div class="logo-container">
+                <div class="logo-circle">
+                    <i class="fas fa-wallet"></i>
+                </div>
+                <div class="nav-brand">PocketHisab</div>
+            </div>
+        </div>
+
+        <!-- Center: Navigation Links -->
+        <div class="nav-center">
+            <div class="nav-links">
+                <a href="index.html" id="navHome">Home</a>
+                <a href="features.html" id="navFeatures">Features</a>
+                <a href="pricing.html" id="navPricing">Pricing</a>
+                <a href="contact.html" id="navContact">Contact</a>
+            </div>
+        </div>
+
+        <!-- Right Side: Toggles -->
+        <div class="nav-controls">
+            <!-- Dark/Light Mode Toggle -->
+            <div class="capsule-toggle" id="darkModeToggle">
+                <div class="toggle-track">
+                    <div class="toggle-thumb active" data-value="light">
+                        <span class="toggle-icon">☀️</span>
+                    </div>
+                    <div class="toggle-thumb" data-value="dark">
+                        <span class="toggle-icon">🌙</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Language Toggle -->
+            <div class="capsule-toggle" id="languageToggle">
+                <div class="toggle-track">
+                    <div class="toggle-thumb active" data-value="en">
+                        <span class="toggle-icon">EN</span>
+                    </div>
+                    <div class="toggle-thumb" data-value="bn">
+                        <span class="toggle-icon">BN</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="glass-card">
+        <!-- Logo -->
+        <div class="logo">PocketHisab</div>
+        
+        <!-- Back to Login -->
+        <div class="back-link">
+            <a href="index.html">
+                <i class="fas fa-arrow-left"></i>
+                <span id="backText">Back to Login</span>
+            </a>
+        </div>
+
+        <!-- Progress Steps -->
+        <div class="progress-steps">
+            <div class="step active" id="step1">
+                <div class="step-circle">1</div>
+                <div class="step-text" id="step1Text">Personal Info</div>
+            </div>
+            <div class="step" id="step2">
+                <div class="step-circle">2</div>
+                <div class="step-text" id="step2Text">Package</div>
+            </div>
+            <div class="step" id="step3">
+                <div class="step-circle">3</div>
+                <div class="step-text" id="step3Text">Verify OTP</div>
+            </div>
+        </div>
+
+        <!-- Sign Up Form -->
+        <form id="signupForm">
+            <!-- Step 1: Personal Information -->
+            <div class="step-content" id="step1Content">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="firstName" id="firstNameLabel">First Name *</label>
+                        <input type="text" id="firstName" class="form-control" placeholder="Enter first name" required>
+                        <div class="error-message" id="firstNameError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName" id="lastNameLabel">Last Name *</label>
+                        <input type="text" id="lastName" class="form-control" placeholder="Enter last name" required>
+                        <div class="error-message" id="lastNameError"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="mobile" id="mobileLabel">Mobile Number *</label>
+                    <input type="tel" id="mobile" class="form-control" placeholder="01XXXXXXXXX" required>
+                    <div class="error-message" id="mobileError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" id="emailLabel">Email Address *</label>
+                    <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                    <div class="error-message" id="emailError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" id="passwordLabel">Password *</label>
+                    <input type="password" id="password" class="form-control" placeholder="Create a password" required>
+                    <div class="error-message" id="passwordError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword" id="confirmPasswordLabel">Confirm Password *</label>
+                    <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm your password" required>
+                    <div class="error-message" id="confirmPasswordError"></div>
+                </div>
+
+                <button type="button" class="btn btn-primary" onclick="nextStep(2)" id="nextStep1Btn">Next → Choose Package</button>
+            </div>
+
+            <!-- Step 2: Package Selection -->
+            <div class="step-content" id="step2Content" style="display: none;">
+                <div class="package-selection">
+                    <h3 style="text-align: center; margin-bottom: 25px; color: var(--text-primary);" id="packageTitle">Choose Your Package</h3>
+                    
+                    <div class="package-options">
+                        <div class="package-option" onclick="selectPackage('basic')">
+                            <div class="package-name" id="basicName">Basic</div>
+                            <div class="package-price" id="basicPrice">৳149/month</div>
+                            <div class="package-features" id="basicFeatures">300 SMS</div>
+                        </div>
+                        
+                        <div class="package-option" onclick="selectPackage('standard')">
+                            <div class="package-name" id="standardName">Standard</div>
+                            <div class="package-price" id="standardPrice">৳199/month</div>
+                            <div class="package-features" id="standardFeatures">400 SMS</div>
+                        </div>
+                        
+                        <div class="package-option" onclick="selectPackage('premium')">
+                            <div class="package-name" id="premiumName">Premium</div>
+                            <div class="package-price" id="premiumPrice">৳249/month</div>
+                            <div class="package-features" id="premiumFeatures">500 SMS</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label style="text-align: center; display: block; color: var(--text-primary);" id="selectedPackageLabel">Selected Package: <span id="selectedPackageText">None</span></label>
+                </div>
+
+                <div class="btn-group">
+                    <button type="button" class="btn btn-secondary" onclick="nextStep(1)" id="backStep2Btn">← Back</button>
+                    <button type="button" class="btn btn-primary" onclick="nextStep(3)" id="nextStep2Btn">Next → Verify</button>
+                </div>
+            </div>
+
+            <!-- Step 3: OTP Verification -->
+            <div class="step-content" id="step3Content" style="display: none;">
+                <div class="otp-section" id="otpSection">
+                    <h3 style="text-align: center; margin-bottom: 20px; color: var(--text-primary);" id="verifyTitle">Verify Your Account</h3>
+                    <p style="text-align: center; color: var(--text-secondary); margin-bottom: 25px;" id="otpMessage">
+                        We've sent OTP codes to your mobile and email
+                    </p>
+                    
+                    <div class="otp-inputs">
+                        <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this, 1)">
+                        <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this, 2)">
+                        <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this, 3)">
+                        <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this, 4)">
+                        <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this, 5)">
+                        <input type="text" class="otp-input" maxlength="1" oninput="moveToNext(this, 6)">
+                    </div>
+                    
+                    <div class="otp-timer" id="otpTimer">
+                        <span id="resendText">Resend OTP in:</span> <span id="timer">02:00</span>
+                    </div>
+                    
+                    <button type="button" class="btn btn-secondary" onclick="resendOTP()" id="resendOtpBtn"><span id="resendOtpText">Resend OTP</span></button>
+                </div>
+
+                <div class="btn-group">
+                    <button type="button" class="btn btn-secondary" onclick="nextStep(2)" id="backStep3Btn">← Back</button>
+                    <button type="button" class="btn btn-primary" onclick="verifyOTP()" id="verifyBtn"><span id="verifyBtnText">Verify & Create Account</span></button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Message Box -->
+        <div id="message" class="message"></div>
+    </div>
+
+    <script>
+        // Current states
+        let currentStep = 1;
+        let selectedPackage = null;
+        let userInput = '';
+        let otpTimer;
+        let canResendOTP = false;
+        let isEnglish = true;
+        let isDarkMode = false;
+
+        // Language texts
+        const translations = {
+            en: {
+                backText: "Back to Login",
+                step1Text: "Personal Info",
+                step2Text: "Package",
+                step3Text: "Verify OTP",
+                firstNameLabel: "First Name *",
+                lastNameLabel: "Last Name *",
+                mobileLabel: "Mobile Number *",
+                emailLabel: "Email Address *",
+                passwordLabel: "Password *",
+                confirmPasswordLabel: "Confirm Password *",
+                nextStep1Btn: "Next → Choose Package",
+                packageTitle: "Choose Your Package",
+                basicName: "Basic",
+                basicPrice: "৳149/month",
+                basicFeatures: "300 SMS",
+                standardName: "Standard",
+                standardPrice: "৳199/month",
+                standardFeatures: "400 SMS",
+                premiumName: "Premium",
+                premiumPrice: "৳249/month",
+                premiumFeatures: "500 SMS",
+                selectedPackageLabel: "Selected Package:",
+                backStep2Btn: "← Back",
+                nextStep2Btn: "Next → Verify",
+                verifyTitle: "Verify Your Account",
+                otpMessage: "We've sent OTP codes to your mobile and email",
+                resendText: "Resend OTP in:",
+                resendOtpText: "Resend OTP",
+                backStep3Btn: "← Back",
+                verifyBtnText: "Verify & Create Account",
+                firstNameError: "First name is required",
+                lastNameError: "Last name is required",
+                mobileError: "Please enter a valid Bangladeshi mobile number",
+                emailError: "Please enter a valid email address",
+                passwordError: "Password must be at least 6 characters long",
+                confirmPasswordError: "Passwords do not match",
+                formError: "Please fix the errors above",
+                packageError: "Please select a package!",
+                otpError: "Please enter the complete 6-digit OTP!",
+                otpSent: "OTP sent to your mobile and email!",
+                otpResent: "OTP resent successfully!",
+                accountCreated: "Account created successfully! Redirecting...",
+                dataRestored: "Form data restored from previous session",
+                welcome: "Welcome! Let's create your account.",
+                navHome: "Home",
+                navFeatures: "Features",
+                navPricing: "Pricing",
+                navContact: "Contact",
+                darkMode: "Dark mode activated",
+                lightMode: "Light mode activated",
+                englishSelected: "English language selected",
+                banglaSelected: "বাংলা ভাষা নির্বাচন করা হয়েছে"
+            },
+            bn: {
+                backText: "লগইনে ফিরে যান",
+                step1Text: "ব্যক্তিগত তথ্য",
+                step2Text: "প্যাকেজ",
+                step3Text: "ওটিপি যাচাই করুন",
+                firstNameLabel: "নামের প্রথম অংশ *",
+                lastNameLabel: "নামের শেষ অংশ *",
+                mobileLabel: "মোবাইল নম্বর *",
+                emailLabel: "ইমেইল ঠিকানা *",
+                passwordLabel: "পাসওয়ার্ড *",
+                confirmPasswordLabel: "পাসওয়ার্ড নিশ্চিত করুন *",
+                nextStep1Btn: "পরবর্তী → প্যাকেজ নির্বাচন করুন",
+                packageTitle: "আপনার প্যাকেজ নির্বাচন করুন",
+                basicName: "বেসিক",
+                basicPrice: "৳149/মাস",
+                basicFeatures: "৩০০ এসএমএস",
+                standardName: "স্ট্যান্ডার্ড",
+                standardPrice: "৳199/মাস",
+                standardFeatures: "৪০০ এসএমএস",
+                premiumName: "প্রিমিয়াম",
+                premiumPrice: "৳249/মাস",
+                premiumFeatures: "৫০০ এসএমএস",
+                selectedPackageLabel: "নির্বাচিত প্যাকেজ:",
+                backStep2Btn: "← পিছনে",
+                nextStep2Btn: "পরবর্তী → যাচাই করুন",
+                verifyTitle: "আপনার অ্যাকাউন্ট যাচাই করুন",
+                otpMessage: "আমরা আপনার মোবাইল এবং ইমেইলে ওটিপি কোড পাঠিয়েছি",
+                resendText: "পুনরায় ওটিপি পাঠান:",
+                resendOtpText: "ওটিপি পুনরায় পাঠান",
+                backStep3Btn: "← পিছনে",
+                verifyBtnText: "যাচাই করুন এবং অ্যাকাউন্ট তৈরি করুন",
+                firstNameError: "নামের প্রথম অংশ প্রয়োজন",
+                lastNameError: "নামের শেষ অংশ প্রয়োজন",
+                mobileError: "সঠিক বাংলাদেশি মোবাইল নম্বর দিন",
+                emailError: "সঠিক ইমেইল ঠিকানা দিন",
+                passwordError: "পাসওয়ার্ড অন্তত ৬ অক্ষরের হতে হবে",
+                confirmPasswordError: "পাসওয়ার্ড মেলে না",
+                formError: "উপরের ভুলগুলি ঠিক করুন",
+                packageError: "দয়া করে একটি প্যাকেজ নির্বাচন করুন!",
+                otpError: "সম্পূর্ণ ৬-অঙ্কের ওটিপি দিন!",
+                otpSent: "আপনার মোবাইল এবং ইমেইলে ওটিপি পাঠানো হয়েছে!",
+                otpResent: "ওটিপি পুনরায় সফলভাবে পাঠানো হয়েছে!",
+                accountCreated: "অ্যাকাউন্ট সফলভাবে তৈরি করা হয়েছে! রিডাইরেক্ট করা হচ্ছে...",
+                dataRestored: "পূর্ববর্তী সেশন থেকে ফর্ম ডেটা পুনরুদ্ধার করা হয়েছে",
+                welcome: "স্বাগতম! আসুন আপনার অ্যাকাউন্ট তৈরি করি।",
+                navHome: "হোম",
+                navFeatures: "ফিচারসমূহ",
+                navPricing: "মূল্য",
+                navContact: "যোগাযোগ",
+                darkMode: "ডার্ক মোড সক্রিয় করা হয়েছে",
+                lightMode: "লাইট মোড সক্রিয় করা হয়েছে",
+                englishSelected: "English language selected",
+                banglaSelected: "বাংলা ভাষা নির্বাচন করা হয়েছে"
+            }
+        };
+
+        // Update page content based on language
+        function updateLanguage(lang) {
+            const t = translations[lang];
+            const isEn = lang === 'en';
+
+            // Update navigation menu
+            document.getElementById('navHome').textContent = t.navHome;
+            document.getElementById('navFeatures').textContent = t.navFeatures;
+            document.getElementById('navPricing').textContent = t.navPricing;
+            document.getElementById('navContact').textContent = t.navContact;
+
+            document.getElementById('backText').textContent = t.backText;
+            document.getElementById('step1Text').textContent = t.step1Text;
+            document.getElementById('step2Text').textContent = t.step2Text;
+            document.getElementById('step3Text').textContent = t.step3Text;
+            document.getElementById('firstNameLabel').textContent = t.firstNameLabel;
+            document.getElementById('lastNameLabel').textContent = t.lastNameLabel;
+            document.getElementById('mobileLabel').textContent = t.mobileLabel;
+            document.getElementById('emailLabel').textContent = t.emailLabel;
+            document.getElementById('passwordLabel').textContent = t.passwordLabel;
+            document.getElementById('confirmPasswordLabel').textContent = t.confirmPasswordLabel;
+            document.getElementById('nextStep1Btn').textContent = t.nextStep1Btn;
+            document.getElementById('packageTitle').textContent = t.packageTitle;
+            document.getElementById('basicName').textContent = t.basicName;
+            document.getElementById('basicPrice').textContent = t.basicPrice;
+            document.getElementById('basicFeatures').textContent = t.basicFeatures;
+            document.getElementById('standardName').textContent = t.standardName;
+            document.getElementById('standardPrice').textContent = t.standardPrice;
+            document.getElementById('standardFeatures').textContent = t.standardFeatures;
+            document.getElementById('premiumName').textContent = t.premiumName;
+            document.getElementById('premiumPrice').textContent = t.premiumPrice;
+            document.getElementById('premiumFeatures').textContent = t.premiumFeatures;
+            document.getElementById('selectedPackageLabel').textContent = t.selectedPackageLabel;
+            document.getElementById('backStep2Btn').textContent = t.backStep2Btn;
+            document.getElementById('nextStep2Btn').textContent = t.nextStep2Btn;
+            document.getElementById('verifyTitle').textContent = t.verifyTitle;
+            document.getElementById('otpMessage').textContent = t.otpMessage;
+            document.getElementById('resendText').textContent = t.resendText;
+            document.getElementById('resendOtpText').textContent = t.resendOtpText;
+            document.getElementById('backStep3Btn').textContent = t.backStep3Btn;
+            document.getElementById('verifyBtnText').textContent = t.verifyBtnText;
+
+            // Update placeholders using the lang passed in
+            document.getElementById('firstName').placeholder = isEn ? "Enter first name" : "নামের প্রথম অংশ দিন";
+            document.getElementById('lastName').placeholder = isEn ? "Enter last name" : "নামের শেষ অংশ দিন";
+            document.getElementById('mobile').placeholder = isEn ? "01XXXXXXXXX" : "০১XXXXXXXXX";
+            document.getElementById('email').placeholder = isEn ? "Enter your email" : "আপনার ইমেইল দিন";
+            document.getElementById('password').placeholder = isEn ? "Create a password" : "পাসওয়ার্ড তৈরি করুন";
+            document.getElementById('confirmPassword').placeholder = isEn ? "Confirm your password" : "পাসওয়ার্ড নিশ্চিত করুন";
+
+            // Update page title
+            document.title = isEn ? "PocketHisab - Sign Up" : "পকেটহিসাব - সাইন আপ";
+        }
+
+        // Show message function
+        function showMessage(text, type) {
+            const message = document.getElementById('message');
+            message.textContent = text;
+            message.className = 'message ' + type;
+            message.style.display = 'block';
+
+            setTimeout(() => {
+                message.style.display = 'none';
+            }, 5000);
+        }
+
+        // Navigate to next step
+        function nextStep(step) {
+            // Validate current step before proceeding
+            if (step === 2 && !validateStep1()) {
+                return;
+            }
+            
+            if (step === 3 && !validateStep2()) {
+                return;
+            }
+
+            document.querySelectorAll('.step-content').forEach(content => { content.style.display = 'none'; });
+            document.querySelectorAll('.step').forEach(stepEl => { stepEl.classList.remove('active'); stepEl.classList.remove('completed'); });
+
+            for (let i = 1; i < step; i++) {
+                document.getElementById('step' + i).classList.add('completed');
+            }
+
+            document.getElementById('step' + step + 'Content').style.display = 'block';
+            document.getElementById('step' + step).classList.add('active');
+
+            currentStep = step;
+            
+            // If moving to step 3, show OTP section and start timer
+            if (step === 3) {
+                document.getElementById('otpSection').style.display = 'block';
+                startOTPTimer();
+            }
+        }
+
+        function previousStep(step) { nextStep(step); }
+
+        // Validate Step 1
+        function validateStep1() {
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const mobile = document.getElementById('mobile').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            let isValid = true;
+            
+            // Reset error messages
+            document.querySelectorAll('.error-message').forEach(el => { el.style.display = 'none'; });
+            
+            // Validate first name
+            if (!firstName) {
+                document.getElementById('firstNameError').textContent = isEnglish ? translations.en.firstNameError : translations.bn.firstNameError;
+                document.getElementById('firstNameError').style.display = 'block';
+                isValid = false;
+            }
+            
+            // Validate last name
+            if (!lastName) {
+                document.getElementById('lastNameError').textContent = isEnglish ? translations.en.lastNameError : translations.bn.lastNameError;
+                document.getElementById('lastNameError').style.display = 'block';
+                isValid = false;
+            }
+            
+            // Validate mobile
+            const mobileRegex = /^01[3-9]\d{8}$/;
+            if (!mobileRegex.test(mobile)) {
+                document.getElementById('mobileError').textContent = isEnglish ? translations.en.mobileError : translations.bn.mobileError;
+                document.getElementById('mobileError').style.display = 'block';
+                isValid = false;
+            }
+            
+            // Validate email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                document.getElementById('emailError').textContent = isEnglish ? translations.en.emailError : translations.bn.emailError;
+                document.getElementById('emailError').style.display = 'block';
+                isValid = false;
+            }
+            
+            // Validate password
+            if (password.length < 6) {
+                document.getElementById('passwordError').textContent = isEnglish ? translations.en.passwordError : translations.bn.passwordError;
+                document.getElementById('passwordError').style.display = 'block';
+                isValid = false;
+            }
+            
+            // Validate confirm password
+            if (password !== confirmPassword) {
+                document.getElementById('confirmPasswordError').textContent = isEnglish ? translations.en.confirmPasswordError : translations.bn.confirmPasswordError;
+                document.getElementById('confirmPasswordError').style.display = 'block';
+                isValid = false;
+            }
+            
+            if (!isValid) {
+                showMessage(isEnglish ? translations.en.formError : translations.bn.formError, 'error');
+            }
+            
+            return isValid;
+        }
+
+        // Validate Step 2
+        function validateStep2() {
+            if (!selectedPackage) {
+                showMessage(isEnglish ? translations.en.packageError : translations.bn.packageError, 'error');
+                return false;
+            }
+            return true;
+        }
+
+        // Select Package
+        function selectPackage(packageType) {
+            selectedPackage = packageType;
+            
+            // Update UI
+            document.querySelectorAll('.package-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            document.querySelector(`.package-option:nth-child(${packageType === 'basic' ? 1 : packageType === 'standard' ? 2 : 3})`).classList.add('selected');
+            
+            // Update selected package text
+            const packageNames = {
+                basic: isEnglish ? 'Basic' : 'বেসিক',
+                standard: isEnglish ? 'Standard' : 'স্ট্যান্ডার্ড',
+                premium: isEnglish ? 'Premium' : 'প্রিমিয়াম'
+            };
+            
+            document.getElementById('selectedPackageText').textContent = packageNames[packageType];
+        }
+
+        // OTP Timer
+        function startOTPTimer() {
+            let timeLeft = 120;
+            const timerElement = document.getElementById('timer');
+            const resendBtn = document.getElementById('resendOtpBtn');
+
+            clearInterval(otpTimer);
+            canResendOTP = false;
+            resendBtn.disabled = true;
+
+            otpTimer = setInterval(() => {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+
+                timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+                if (timeLeft <= 0) {
+                    clearInterval(otpTimer);
+                    timerElement.textContent = '00:00';
+                    canResendOTP = true;
+                    resendBtn.disabled = false;
+                }
+
+                timeLeft--;
+            }, 1000);
+        }
+
+        function moveToNext(input, nextIndex) {
+            if (input.value.length === 1) {
+                const inputs = Array.from(input.parentElement.querySelectorAll('.otp-input'));
+                const idx = inputs.indexOf(input);
+                if (idx >= 0 && inputs[idx + 1]) inputs[idx + 1].focus();
+            }
+        }
+
+        function resendOTP() {
+            if (!canResendOTP) return;
+            startOTPTimer();
+            showMessage(isEnglish ? translations.en.otpResent : translations.bn.otpResent, 'success');
+        }
+
+        function verifyOTP() {
+            const otpInputs = document.querySelectorAll('.otp-input');
+            let otp = '';
+            otpInputs.forEach(input => { otp += input.value; });
+
+            if (otp.length !== 6) {
+                showMessage(isEnglish ? translations.en.otpError : translations.bn.otpError, 'error');
+                return;
+            }
+
+            const btn = document.getElementById('verifyBtn');
+            const originalText = btn.querySelector('span').textContent;
+            btn.querySelector('span').textContent = isEnglish ? "Creating Account..." : "অ্যাকাউন্ট তৈরি করা হচ্ছে...";
+            btn.disabled = true;
+
+            setTimeout(() => {
+                btn.querySelector('span').textContent = originalText;
+                btn.disabled = false;
+
+                showMessage(isEnglish ? translations.en.accountCreated : translations.bn.accountCreated, 'success');
+                
+                // Redirect to login page after successful account creation
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 2000);
+            }, 1500);
+        }
+
+        // Update Toggle Visual State
+        function updateDarkModeToggle(isDark) {
+            const thumbs = document.querySelectorAll('#darkModeToggle .toggle-thumb');
+            thumbs[0].classList.toggle('active', !isDark);
+            thumbs[1].classList.toggle('active', isDark);
+        }
+
+        function updateLanguageToggle(isEnglish) {
+            const thumbs = document.querySelectorAll('#languageToggle .toggle-thumb');
+            thumbs[0].classList.toggle('active', isEnglish);
+            thumbs[1].classList.toggle('active', !isEnglish);
+        }
+
+        // Toggle Theme Function
+        function toggleTheme(isDark) {
+            if (isDark) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                isDarkMode = true;
+                updateDarkModeToggle(true);
+                showMessage(isEnglish ? translations.en.darkMode : translations.bn.darkMode, 'success');
+                localStorage.setItem('darkMode', 'true');
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+                isDarkMode = false;
+                updateDarkModeToggle(false);
+                showMessage(isEnglish ? translations.en.lightMode : translations.bn.lightMode, 'success');
+                localStorage.setItem('darkMode', 'false');
+            }
+        }
+
+        // Toggle Language Function
+        function toggleLanguage(isEnglishLang) {
+            if (isEnglishLang) {
+                isEnglish = true;
+                updateLanguage('en');
+                updateLanguageToggle(true);
+                showMessage(translations.en.englishSelected, 'success');
+                localStorage.setItem('language', 'en');
+            } else {
+                isEnglish = false;
+                updateLanguage('bn');
+                updateLanguageToggle(false);
+                showMessage(translations.bn.banglaSelected, 'success');
+                localStorage.setItem('language', 'bn');
+            }
+        }
+
+        // Page loaded successfully
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load dark mode preference
+            const savedDarkMode = localStorage.getItem('darkMode');
+            if (savedDarkMode === 'true') {
+                toggleTheme(true);
+            } else {
+                toggleTheme(false);
+            }
+            
+            // Load language preference
+            const savedLanguage = localStorage.getItem('language');
+            if (savedLanguage === 'bn') {
+                toggleLanguage(false);
+            } else {
+                toggleLanguage(true);
+            }
+
+            // Show welcome message
+            const welcomeText = isEnglish ? translations.en.welcome : translations.bn.welcome;
+            showMessage(welcomeText, 'info');
+
+            console.log('🎉 PocketHisab Sign Up Page Loaded!');
+        });
+
+        // Dark Mode Toggle
+        document.getElementById('darkModeToggle').addEventListener('click', function(e) {
+            const rect = this.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const isRightClick = clickX > rect.width / 2;
+            
+            if (isRightClick) {
+                // Dark Mode
+                toggleTheme(true);
+            } else {
+                // Light Mode
+                toggleTheme(false);
+            }
+        });
+
+        // Language Toggle
+        document.getElementById('languageToggle').addEventListener('click', function(e) {
+            const rect = this.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const isRightClick = clickX > rect.width / 2;
+            
+            if (isRightClick) {
+                // Bangla
+                toggleLanguage(false);
+            } else {
+                // English
+                toggleLanguage(true);
+            }
+        });
+
+        // Add keyboard shortcut for dark mode (Ctrl+D)
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'd') {
+                e.preventDefault();
+                toggleTheme(!isDarkMode);
+            }
+        });
+
+        // Add keyboard shortcut for language toggle (Ctrl+L)
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && (e.key === 'l' || e.key === 'L')) {
+                e.preventDefault();
+                toggleLanguage(!isEnglish);
+            }
+        });
+    </script>
+</body>
+</html>
